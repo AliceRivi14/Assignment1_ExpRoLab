@@ -1,1 +1,1 @@
-# Assignment1_ExpRoLab
+# Assignment 1 Experimental Robotics Laboratory
