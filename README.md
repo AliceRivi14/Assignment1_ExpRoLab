@@ -65,4 +65,4 @@ Oltre al terminale in cui viene lancito il file, appaiono 4 terminali:
 * RAND
 * BATT
 
-Note: Cambiare il percorso dell'Armor_Client nei nodi ‘[ws_path]/assignment_1/ontology/Map.owl’
+Note: Cambiare il percorso dell'Armor_Client nei nodi `‘[ws_path]/assignment_1/ontology/Map.owl’`
