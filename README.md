@@ -57,7 +57,7 @@ Add the line `‘source [ws_path]/devel/setup.bash’` in your `.bashrc` file.
 
 To be able to run the nodes you must frun the launch file:
 ```bashscript
-$ roslaunch assignment_1 architecture.launch  ??????
+$ roslaunch assignment_1 architecture
 ```
 Oltre al terminale in cui viene lancito il file, appaiono 4 terminali:
 * SM
