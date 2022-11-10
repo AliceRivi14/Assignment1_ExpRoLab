@@ -57,12 +57,17 @@ Add the line `‘source [ws_path]/devel/setup.bash’` in your `.bashrc` file.
 
 To be able to run the nodes you must frun the launch file:
 ```bashscript
-$ roslaunch assignment_1 architecture
+$ roslaunch assignment_1 architecture.launch
 ```
 Oltre al terminale in cui viene lancito il file, appaiono 4 terminali:
 * SM
 * MAP
 * RAND
 * BATT
+
+NEL CASO DI PROBLEMI DOVUTI AL CRASHARE DEI NODI, APRIRE 5 TERMINALI, LANCIARE IL roscore E UN NODO PER OGNI TERMINALE NEL SEGUENTE ORDINE
+armor
+???
+sm
 
 Note: Cambiare il percorso dell'Armor_Client nei nodi `‘[ws_path]/assignment_1/ontology/Map.owl’`
