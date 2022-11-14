@@ -3,7 +3,34 @@
 Behavioural Architechture
 ================================
 
-Descrivi lo scenario e il robot, copia l'intro dell'assignment = breve intro
+This software architecture has been developed by [Student Robotics](https://studentrobotics.org) in ROS to simulate a surveillance robot.
+The whole software is provided in Python 3.
+
+The software developed uses a [Smach State Machine](http://wiki.ros.org/smach) and builds an ontology with aRMOR, using the [armor_py_api](https://github.com/EmaroLab/armor_py_api).
+
+The scenario involves a survillance robot operating in a 2D indoor environment, made of 4 rooms (R1, R2, R3, R4) and 3 corridors (E, C1, C2).
+
+![Immagine 2022-11-14 173457]
+
+The behavior of the robot is divided into 2 phases:
+
+* Phase 1:
+1. The robot start in the E location;
+2. The robot waits until it receives the information to build the topological map ;
+3. The robot builts the map.
+
+* Phase 2:
+<ol>
+<li>The robot moves through locations following a surveillance policy:</li>
+ <ol>
+  <li>It should mainly stay on corridors,</li>
+  <li>If a reachable room has not been visited for some times it should visit it;</li>
+ </ol>
+<li>The robot moves in a new location, and waits for some times before to visit another location. This behavior is repeated in a infinite loop;</li>
+<li>When the robot’s battery is low, the robot goes in the E location, and wait for some times before to start again with the above behavior.</li>
+<ol>
+
+
 
 ROS Architecture
 ------------------------
