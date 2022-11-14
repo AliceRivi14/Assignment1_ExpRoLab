@@ -8,48 +8,46 @@ The whole software is provided in Python 3.
 
 The software developed uses a [Smach State Machine](http://wiki.ros.org/smach) and builds an ontology with aRMOR, using the [armor_py_api](https://github.com/EmaroLab/armor_py_api).
 
-The scenario involves a survillance robot operating in a 2D indoor environment, made of 4 rooms (R1, R2, R3, R4) and 3 corridors (E, C1, C2).
+The scenario involves a survillance robot operating in a 2D indoor environment, without obstacles, made of 4 rooms (R1, R2, R3, R4) and 3 corridors (E, C1, C2).
 
-![Immagine 2022-11-14 173457]
+![Immagine 2022-11-14 173457](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Immagine%202022-11-14%20173457.png)
 
 The behavior of the robot is divided into 2 phases:
 
 * Phase 1:
 1. The robot start in the E location;
-2. The robot waits until it receives the information to build the topological map ;
+2. The robot waits until it receives the information to build the topological map;
 3. The robot builts the map.
 
 * Phase 2:
-<ol>
-<li>The robot moves through locations following a surveillance policy:</li>
- <ol>
-  <li>It should mainly stay on corridors,</li>
-  <li>If a reachable room has not been visited for some times it should visit it;</li>
- </ol>
-<li>The robot moves in a new location, and waits for some times before to visit another location. This behavior is repeated in a infinite loop;</li>
-<li>When the robot’s battery is low, the robot goes in the E location, and wait for some times before to start again with the above behavior.</li>
-<ol>
-
+1. The robot moves through locations following a surveillance policy:
+    1. It should mainly stay on corridors,
+    2. If a reachable room has not been visited for some times it should visit it;
+2. The robot moves in a new location, and waits for some times before to visit another location. 
+3. When the robot’s battery is low, the robot goes in the E location, and wait for some times before to start again with the above behavior.
 
 
 ROS Architecture
 ------------------------
+There are four nodes in this software architecture:
+* StateMachine
+* TopologicalMap
+* RandomMovement
+* Battery
 
-4 nodi:
-* SM
-* MAP
-* MOV
-* BATT
-
-### SM node 
+### StateMachine node 
 viewer FOTO
-* TOP
-* MOV
-  * `b_low`
-  * `move`
-* BAT
-  * `b_low`
-  * `move`
+
+In this node, the 3 classes representing the states of the finite state machine FSM are initialized. Each state is characterised by the initialisation function `__init__(self)` and the function representing the state execution `execute(self, userdata)`.
+
+- `class TOPOLOGICAL_MAP(smach.State)TOPOLOGICAL_MAP`: Class implementing FSM state concerning the topology map.
+    - return `map_OK`
+- `class RANDOM_MOVEMNT(smach.State)`: Class implementing FSM state concerning the random movement.
+    - return `b_low`: if the robot needs to be recharged
+    - return `move`: if the robot can move between the rooms
+- `class ROOM_E(smach.State)`: Class implementing FSM state concerning the room E.
+    - return `b_low`: if the robot needs to be recharged
+    - return `move`: if the robot can move between the rooms
 
 ### Topological Map node 
 brief description
