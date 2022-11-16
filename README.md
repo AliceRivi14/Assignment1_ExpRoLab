@@ -1,4 +1,4 @@
-Assignment 1: Behavioural Architechture
+Behavioural Architechture
 ================================
 **A ROS-based assignment for the Experimental Robotics Laboratory course held at the University of Genoa.**
 
