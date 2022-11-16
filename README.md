@@ -31,7 +31,7 @@ Phase 2:
 3. When the robot’s battery is low, the robot goes in the E location, and wait for some times before to start again with the above behavior.
 
 
-ROS Architecture
+Project Structure
 ------------------------
 There are four nodes in this software architecture:
 * StateMachine
@@ -98,9 +98,11 @@ brief description
 parameters
 function
 
-rqt_graph FOTO
-
 ![UML](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/UML.png)
+
+Tutti i nodi, insieme all'aRMOR service vengono lanciati attraverso il file launch.
+
+In ogni file viene importato lo script python [Functions.py]() nel quale vengono definite le varie funzioni utilizzate da più nodi.
 
 Installation and running
 -------------------------------
@@ -130,3 +132,8 @@ armor
 sm
 
 > Note: Changing the Armor_Client Path in the codes `‘[ws_path]/assignment_1/ontology/Map.owl’`
+
+
+
+
+
