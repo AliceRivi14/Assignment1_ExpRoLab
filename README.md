@@ -1,7 +1,11 @@
-# Assignment 1 
-
-Behavioural Architechture
+Assignment 1: Behavioural Architechture
 ================================
+**A ROS-based assignment for the Experimental Robotics Laboratory course held at the University of Genoa.**
+
+*Author: Alice Rivi <S5135011@studenti.unige.it>*
+
+Introduction 
+-----------------
 
 This software architecture has been developed by [Student Robotics](https://studentrobotics.org) in ROS to simulate a surveillance robot.
 The whole software is provided in Python 3.
