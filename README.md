@@ -129,4 +129,4 @@ armor
 ???
 sm
 
-Note: Cambiare il percorso dell'Armor_Client nei nodi `‘[ws_path]/assignment_1/ontology/Map.owl’`
+> Note: Changing the Armor_Client Path in the codes `‘[ws_path]/assignment_1/ontology/Map.owl’`
