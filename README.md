@@ -38,16 +38,46 @@ There are four nodes in this software architecture:
 ### StateMachine node 
 viewer FOTO
 
-In this node, the 3 classes representing the states of the finite state machine FSM are initialized. Each state is characterised by the initialisation function `__init__(self)` and the function representing the state execution `execute(self, userdata)`.
+In this node, the 4 classes representing the states of the finite state machine FSM are initialized. Each state is characterised by the initialisation function `__init__(self)` and the function representing the state execution `execute(self, userdata)`.
 
-- `class TOPOLOGICAL_MAP(smach.State)TOPOLOGICAL_MAP`: Class implementing FSM state concerning the topology map.
-    - return `map_OK`
+- `class TOPOLOGICAL_MAP(smach.State)`: Class implementing FSM state concerning the topology map.
+
+    Within the execute function, a call is made to the server connecting the FSM to the TopologicalMap node, and 3 seconds are waited for the requested behaviour to be executed.
+
+    Returns the transition of the FSM to be carried out:
+
+    * `b_low`: if the robot needs to be recharged
+    * `map_OK`: when map construction ends
+
+- `class CHOOSE_DESTINATION(samch.State)`: Class implementing FSM state conserning the choise of the destination.
+
+    Within the execute function, a call is made to the finction `Destination()` and 5 seconds are waited.
+
+    Returns the transition of the FSM to be carried out:
+    
+    * `b_low`: if the robot needs to be recharged
+    *  `destination`: when the location in which the robot is to move is chosen
+
+    
 - `class RANDOM_MOVEMNT(smach.State)`: Class implementing FSM state concerning the random movement.
-    - return `b_low`: if the robot needs to be recharged
-    - return `move`: if the robot can move between the rooms
+
+    Within the execute function, a call is made to the server connecting the FSM to the TopologicalMap node, and 3 seconds are waited for the requested behaviour to be executed.
+
+    Returns the transition of the FSM to be carried out:
+    
+    * `b_low`: if the robot needs to be recharged
+    *  `move`: if the robot can move between the rooms
+    
 - `class ROOM_E(smach.State)`: Class implementing FSM state concerning the room E.
-    - return `b_low`: if the robot needs to be recharged
-    - return `move`: if the robot can move between the rooms
+
+    Within the execute function, a call is made to the server connecting the FSM to the TopologicalMap node, and 3 seconds are waited for the requested behaviour to be executed.
+
+    Returns the transition of the FSM to be carried out:
+    
+    * `b_low`: if the robot needs to be recharged
+    * `move`: if the robot can move between the rooms
+
+Within the `main()` function, in addition to the node, the main state machine and the sub-machine are initialised.
 
 ### Topological Map node 
 brief description
