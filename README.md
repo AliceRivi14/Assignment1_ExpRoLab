@@ -14,7 +14,7 @@ The software developed uses a [Smach State Machine](http://wiki.ros.org/smach) a
 
 The scenario involves a survillance robot operating in a 2D indoor environment, without obstacles, made of 4 rooms (R1, R2, R3, R4) and 3 corridors (E, C1, C2).
 
-![Immagine 2022-11-14 173457](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Immagine%202022-11-14%20173457.png)
+![Map](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Map.png)
 
 The behavior of the robot is divided into 2 phases:
 
@@ -100,7 +100,7 @@ function
 
 rqt_graph FOTO
 
-UML FOTO --> ogni service ripresenta la stessa struttura di response e request messages sia quando comunica con il nodo della macchina a stati sia quando comunica coi nodi relativi ai comportamenti associati ad ogni stato della FSM
+![UML](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/UML.png)
 
 Installation and running
 -------------------------------
