@@ -18,12 +18,12 @@ The scenario involves a survillance robot operating in a 2D indoor environment, 
 
 The behavior of the robot is divided into 2 phases:
 
-* Phase 1:
+Phase 1:
 1. The robot start in the E location;
 2. The robot waits until it receives the information to build the topological map;
 3. The robot builts the map.
 
-* Phase 2:
+Phase 2:
 1. The robot moves through locations following a surveillance policy:
     1. It should mainly stay on corridors,
     2. If a reachable room has not been visited for some times it should visit it;
@@ -44,7 +44,7 @@ viewer FOTO
 
 In this node, the 4 classes representing the states of the finite state machine FSM are initialized. Each state is characterised by the initialisation function `__init__(self)` and the function representing the state execution `execute(self, userdata)`.
 
-- `class TOPOLOGICAL_MAP(smach.State)`: Class implementing FSM state concerning the topology map.
+- `class TOPOLOGICAL_MAP(smach.State)`: Class implementing FSM state concerning the topological map.
 
     Within the execute function, a call is made to the server connecting the FSM to the TopologicalMap node, and 3 seconds are waited for the requested behaviour to be executed.
 
@@ -55,7 +55,7 @@ In this node, the 4 classes representing the states of the finite state machine 
 
 - `class CHOOSE_DESTINATION(samch.State)`: Class implementing FSM state conserning the choise of the destination.
 
-    Within the execute function, a call is made to the finction `Destination()` and 5 seconds are waited.
+    Within the execute function, a call is made to the function `Destination()` and 5 seconds are waited.
 
     Returns the transition of the FSM to be carried out:
     
@@ -65,7 +65,7 @@ In this node, the 4 classes representing the states of the finite state machine 
     
 - `class RANDOM_MOVEMNT(smach.State)`: Class implementing FSM state concerning the random movement.
 
-    Within the execute function, a call is made to the server connecting the FSM to the TopologicalMap node, and 3 seconds are waited for the requested behaviour to be executed.
+    Within the execute function, a call is made to the server connecting the FSM to the RandomMovement node, and 5 seconds are waited for the requested behaviour to be executed.
 
     Returns the transition of the FSM to be carried out:
     
@@ -74,14 +74,14 @@ In this node, the 4 classes representing the states of the finite state machine 
     
 - `class ROOM_E(smach.State)`: Class implementing FSM state concerning the room E.
 
-    Within the execute function, a call is made to the server connecting the FSM to the TopologicalMap node, and 3 seconds are waited for the requested behaviour to be executed.
+    Within the execute function, a call is made to the server connecting the FSM to the Battery node, and 5 seconds are waited for the requested behaviour to be executed.
 
     Returns the transition of the FSM to be carried out:
     
     * `b_low`: if the robot needs to be recharged
     * `move`: if the robot can move between the rooms
 
-Within the `main()` function, in addition to the node, the main state machine and the sub-machine are initialised.
+Within the `main()` function, in addition to the node, the main state machine and the sub-state machine are initialised.
 
 ### Topological Map node 
 brief description
