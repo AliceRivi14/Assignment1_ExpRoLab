@@ -33,7 +33,7 @@ Phase 2:
 3. When the robot’s battery is low, the robot goes in the E location, and wait for some times before to start again with the above behavior.
 
 
-Project Structure
+Software Architecture
 ------------------------
 There are four nodes in this software architecture:
 * StateMachine
@@ -206,15 +206,6 @@ MBClient = actionlib.SimpleActionClient('move_base',MoveBaseAction)
 * `Movement_Switch(req)`:
 
     service callback.
-
-Running the RandomMovement node in the terminal should show similar output
-
-```
-I'M LOOKING FOR A LOCATION
-Position (1.449895626758796561,5.014336969878995655) reached
-Last location visited at 1665579740
-Go to location R1
-```
 
 ### Battery node 
 
