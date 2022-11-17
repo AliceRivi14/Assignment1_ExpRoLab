@@ -181,7 +181,13 @@ There are 1 functions:
     
 Running the RandomMovement node in the terminal should show similar output
 
-![Terminal_Battery.png](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Terminal_Battery.png)
+```bashscript
+I NEED TO RECHARGE
+BATTERY LOW
+Last location visited at 1665579740
+Go to location E
+Battery recharged in <font color="blue">1.02365749632569</font> seconds'
+```
 
 In each file, the python script **[Functions.py]** is imported, in which the various functions used by several nodes are defined.
 
