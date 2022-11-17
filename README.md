@@ -2,7 +2,7 @@ Behavioural Architechture
 ================================
 **A ROS-based assignment for the Experimental Robotics Laboratory course held at the University of Genoa.**
 
-> 📑: [Code Documentation]
+> 📑: [Code Documentation](https://alicerivi14.github.io/Assignment1_ExpRoLab/)
 
 Introduction 
 -----------------
