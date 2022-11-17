@@ -41,6 +41,8 @@ There are four nodes in this software architecture:
 * RandomMovement
 * Battery
 
+![UML](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/UML.png)
+
 ### StateMachine node
 
 In this node, the state machine and the sub-state machine are initialised.
@@ -170,8 +172,6 @@ There are 1 functions:
 
     service callback.
     
-
-![UML](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/UML.png)
 
 In ogni file viene importato lo script python **[Functions.py]()** nel quale vengono definite le varie funzioni utilizzate da più nodi.
 
