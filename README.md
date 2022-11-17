@@ -208,20 +208,20 @@ $ roslaunch assignment1 architecture.launch
 ```
 In addition to the terminal in which the file is launched, 4 terminals relating to the four ROS nodes appear.
 
-In case of problems due to some nodes crashing, run the aRMOR service and open 4 more terminals.
-In these terminals, execute the nodes in the following order:
-```bashscript
-# 1st terminal
-$ rosrun assignment1 TopologicalMap.py
-# 2nd terminal
-$ rosrun assignment1 RandomMovement.py
-# 3rd terminal
-$ rosrun assignment1 Battery.py
-# 4th termina
-$ rosrun assignment1 StateMachine.py
-```
+> :warning: **Warning:** In case of problems due to some nodes crashing, run the aRMOR service and open 4 more terminals.
+> In these terminals, execute the nodes in the following order:
+> ```bashscript
+> # 1st terminal
+> $ rosrun assignment1 TopologicalMap.py
+> # 2nd terminal
+> $ rosrun assignment1 RandomMovement.py
+> # 3rd terminal
+> $ rosrun assignment1 Battery.py
+> # 4th termina
+> $ rosrun assignment1 StateMachine.py
+> ```
 
-> Note: Change the Path in the `TopologicalMap script` `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
+> :memo: **Note:** Change the Path in the `TopologicalMap script` `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
 
 
 
