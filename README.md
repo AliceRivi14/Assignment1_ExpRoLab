@@ -10,7 +10,7 @@ Introduction
 This software architecture has been developed by [Student Robotics](https://studentrobotics.org) in ROS to simulate a surveillance robot.
 The whole software is provided in Python 3.
 
-Documentation via [Sphinx](https://www.sphinx-doc.org/en/master/) can be found [here](file:///home/alice/ERL_WS/src/assignment1/build/index.html).
+Documentation via [Sphinx](https://www.sphinx-doc.org/en/master/) can be found **[here]**.
 
 The software developed uses a [Smach Finite State Machine](http://wiki.ros.org/smach) FSM and builds an ontology with aRMOR, using the [armor_py_api](https://github.com/EmaroLab/armor_py_api).
 
@@ -206,7 +206,7 @@ armor
 ???
 sm
 
-> Note: Changing the Armor_Client Path in the codes `‘[ws_path]/assignment_1/ontology/Map.owl’`
+> Note: Changing the Path in the TopologicalMap script ‘[ws_path]/assignment_1/ontology/Map.owl’ and the import path in each script.
 
 
 
