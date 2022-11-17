@@ -206,7 +206,7 @@ armor
 ???
 sm
 
-> Note: Changing the Path in the TopologicalMap script ‘[ws_path]/assignment_1/ontology/Map.owl’ and the import path in each script.
+> Note: Changing the Path in the **[TopologicalMap script]** `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
 
 
 
