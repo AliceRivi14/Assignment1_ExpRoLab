@@ -173,8 +173,6 @@ There are 1 functions:
 
 ![UML](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/UML.png)
 
-Tutti i nodi, insieme all'aRMOR service vengono lanciati attraverso il file launch.
-
 In ogni file viene importato lo script python **[Functions.py]()** nel quale vengono definite le varie funzioni utilizzate da più nodi.
 
 Installation and running
