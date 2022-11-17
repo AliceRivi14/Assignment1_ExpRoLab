@@ -157,13 +157,12 @@ There are 2 functions:
 
 Running the RandomMovement node in the terminal should show similar output
 
-```bashscript
+```
 I'M LOOKING FOR A LOCATION
-Position (1.449895626758796561 ,5.014336969878995655 reached
+Position (1.449895626758796561,5.014336969878995655) reached
 Last location visited at 1665579740
 Go to location R1
 ```
-
 
 ### Battery node 
 
@@ -187,13 +186,14 @@ There are 1 functions:
     
 Running the RandomMovement node in the terminal should show similar output
 
-```bashscript
+```
 I NEED TO RECHARGE
 BATTERY LOW
 Last location visited at 1665579740
 Go to location E
 Battery recharged in 1.02365749632569 seconds
 ```
+
 
 In each file, the python script **[Functions.py]** is imported, in which the various functions used by several nodes are defined.
 
