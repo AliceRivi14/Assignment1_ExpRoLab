@@ -2,14 +2,14 @@ Behavioural Architechture
 ================================
 **A ROS-based assignment for the Experimental Robotics Laboratory course held at the University of Genoa.**
 
+> 📑: [Code Documentation]
+
 Introduction 
 -----------------
 
 This software architecture has been developed by [Student Robotics](https://studentrobotics.org) in ROS to simulate a surveillance robot.
 
 The whole software is provided in Python 3.
-
-Documentation via [Sphinx](https://www.sphinx-doc.org/en/master/) can be found **[here]**.
 
 The software developed uses a [Smach Finite State Machine](http://wiki.ros.org/smach) FSM and builds an ontology with aRMOR, using the [armor_py_api](https://github.com/EmaroLab/armor_py_api).
 
@@ -246,7 +246,7 @@ $ roslaunch assignment1 architecture.launch
 ```
 In addition to the terminal in which the file is launched, 4 terminals relating to the four ROS nodes appear.
 
-> :warning: **Warning:** In case of problems due to some nodes crashing, run the aRMOR service and open 4 more terminals.
+> ⚠️: **Warning:** In case of problems due to some nodes crashing, run the aRMOR service and open 4 more terminals.
 > 
 > In these terminals, execute the nodes in the following order:
 > ```bashscript
@@ -266,7 +266,7 @@ In addition to the terminal in which the file is launched, 4 terminals relating 
 > $ rosrun assignment1 StateMachine.py
 > ```
 
-> :memo: **Note:** Change the Path in the `TopologicalMap` script `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
+> 📝: **Note:** Change the Path in the `TopologicalMap` script `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
 
 
 Working Hypothesis and Environment
@@ -305,4 +305,6 @@ As for the environment, one could create a real map associating each room with c
 Author
 --------
  
- *Alice Rivi <S5135011@studenti.unige.it>*
+ *Alice Rivi*
+ 
+ 📧: *<S5135011@studenti.unige.it>*
