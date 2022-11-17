@@ -181,7 +181,7 @@ There are 2 functions:
 
 Running the RandomMovement node in the terminal should show similar output
 
-```shell
+```
 I'M LOOKING FOR A LOCATION
 Position (1.449895626758796561,5.014336969878995655) reached
 Last location visited at 1665579740
@@ -210,7 +210,7 @@ There are 1 functions:
     
 Running the RandomMovement node in the terminal should show similar output
 
-```shell
+```
 I NEED TO RECHARGE
 BATTERY LOW
 Last location visited at 1665579740
