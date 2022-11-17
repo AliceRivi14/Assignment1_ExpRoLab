@@ -235,6 +235,11 @@ $ catkin_make
 ```
 Add the line `‘source [ws_path]/devel/setup.bash’` in your `.bashrc` file.
 
+If is not already installed, install smach with
+```bashscript
+$ sudo apt-get install ros-[ROS-DISTRO]-executive-smach*
+```
+
 To be able to run the nodes you must first run the aRMOR service
 ```bashscript
 $ roscore &
