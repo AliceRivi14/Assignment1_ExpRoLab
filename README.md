@@ -81,6 +81,30 @@ There are 4 classes representing the states of the finite state machine. Each st
     * `b_low`: if the robot needs to be recharged
     * `destination`: when the location in which the robot is to move is chosen
 
+This is a piece of code that explains how the location in which the robot moves is chosen:
+```python
+Urgent = CleanList(Armor_Client.call('QUERY', 'IND', 'CLASS', ['URGENT']))
+    # Urgent rooms
+    Urgent = [Idx for Idx in Urgent if Idx not in Corridors]
+    # Location reachable by the robot
+    Reachable = CleanList(Armor_Client.call('QUERY', 'OBJECTPROP', 'IND', ['canReach', Robot]))
+    # Urgent rooms reachable
+    Urgent = [Value for Value in Urgent if Value in Reachable]
+
+    # If several rooms are urgent, choose one randomly
+    if Urgent:
+        Target = random.choice(Urgent)
+    # If no room is urgent, choose an reachable corridor randomly
+    else:
+        Target = [Idx for Idx in Reachable if Idx in Corridors]
+        if Target:
+            Target = random.choice(Target)
+    # If no corridor is reachable, randomly choose a reachable location
+        else:
+            Target = random.choice(Reachable)
+            if not Target:
+                print('ERROR')
+```
     
 - `class RANDOM_MOVEMNT(smach.State)`: Class implementing FSM state concerning the random movement.
 
@@ -157,7 +181,7 @@ There are 2 functions:
 
 Running the RandomMovement node in the terminal should show similar output
 
-```
+```shell
 I'M LOOKING FOR A LOCATION
 Position (1.449895626758796561,5.014336969878995655) reached
 Last location visited at 1665579740
@@ -186,7 +210,7 @@ There are 1 functions:
     
 Running the RandomMovement node in the terminal should show similar output
 
-```
+```shell
 I NEED TO RECHARGE
 BATTERY LOW
 Last location visited at 1665579740
