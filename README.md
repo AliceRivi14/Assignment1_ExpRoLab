@@ -10,7 +10,9 @@ Introduction
 This software architecture has been developed by [Student Robotics](https://studentrobotics.org) in ROS to simulate a surveillance robot.
 The whole software is provided in Python 3.
 
-The software developed uses a [Smach State Machine](http://wiki.ros.org/smach) and builds an ontology with aRMOR, using the [armor_py_api](https://github.com/EmaroLab/armor_py_api).
+Documentation via [Sphinx](https://www.sphinx-doc.org/en/master/) can be found **[here]**
+
+The software developed uses a [Smach Finite State Machine](http://wiki.ros.org/smach) FSM and builds an ontology with aRMOR, using the [armor_py_api](https://github.com/EmaroLab/armor_py_api).
 
 The scenario involves a survillance robot operating in a 2D indoor environment, without obstacles, made of 4 rooms (R1, R2, R3, R4) and 3 corridors (E, C1, C2).
 
@@ -39,10 +41,25 @@ There are four nodes in this software architecture:
 * RandomMovement
 * Battery
 
-### StateMachine node 
-viewer FOTO
+### StateMachine node
 
-In this node, the 4 classes representing the states of the finite state machine FSM are initialized. Each state is characterised by the initialisation function `__init__(self)` and the function representing the state execution `execute(self, userdata)`.
+In this node, the state machine and the sub-state machine are initialised.
+
+**viewer FOTO**
+
+* Client:
+
+    `/Battery_Switch` to active the ROOM_E state
+
+    `/Movement_Switch` to active the RANDOM_MOVEMENT state
+
+    `/Mapping_Switch` to active the TOPOLOGICAL_MAP state
+
+* Service:
+
+    `/B_Switch` to communicate the need for recharging the battery
+
+There are 4 classes representing the states of the finite state machine. Each state is characterised by the initialisation function `__init__(self)` and the function representing the state execution `execute(self, userdata)`.
 
 - `class TOPOLOGICAL_MAP(smach.State)`: Class implementing FSM state concerning the topological map.
 
@@ -60,7 +77,7 @@ In this node, the 4 classes representing the states of the finite state machine 
     Returns the transition of the FSM to be carried out:
     
     * `b_low`: if the robot needs to be recharged
-    *  `destination`: when the location in which the robot is to move is chosen
+    * `destination`: when the location in which the robot is to move is chosen
 
     
 - `class RANDOM_MOVEMNT(smach.State)`: Class implementing FSM state concerning the random movement.
@@ -81,28 +98,84 @@ In this node, the 4 classes representing the states of the finite state machine 
     * `b_low`: if the robot needs to be recharged
     * `move`: if the robot can move between the rooms
 
-Within the `main()` function, in addition to the node, the main state machine and the sub-state machine are initialised.
-
 ### Topological Map node 
-brief description
-parameters
-function
+
+This node enables the behaviour associated with the TOPOLOGICAL_MAP state to be performed, simulating the construction of the topological map.
+
+* Client:
+
+    `ArmorClient`
+
+* Service:
+
+    `/Mapping_Switch` to active the TOPOLOGICAL_MAP state
+
+There are 2 functions:
+
+* `LoadMap()`:
+
+    through the aRMOR client, the topology map can be created by loading the ontology. This map was created through the use of [Protégé](https://protege.stanford.edu/) and aved in the file [Map.owl](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/ontology/Map.owl).
+    
+* `Mapping_Switch(req)`:
+
+    service callback.
+
 
 ### Random Movement node 
-brief description
-parameters
-function
+
+This node enables the behaviour associated with the RANDOM_MOVEMENT state to be performed, simulating the robot's movement between locations. 
+
+* Client:
+
+    `ArmorClient`
+    
+    `MoveBaseAction`
+
+* Service:
+
+    `/Mapping_Switch` to active the RANDOM_MOVEMENT state
+
+    `MoveBaseGoal`
+
+There are 2 functions:
+
+* `MoveBaseA()`:
+
+    provides an implementation of a [MoveBaseAction](http://docs.ros.org/en/fuerte/api/move_base_msgs/html/msg/MoveBaseAction.html) which, given a position goal, will attempt to reach it.
+
+    If the position is not reached within a certain time (3.0 seconds) or if the signal of battery low is sent, the goal is cancelled.
+    
+* `Movement_Switch(req)`:
+
+    service callback.
+
 
 ### Battery node 
-brief description
-parameters
-function
+
+This node performs the behaviour associated with the ROOM_E state, simulating the charging of the robot's battery and randomly alerts when the robot needs to be recharged.
+
+* Client:
+
+    `/B_Switch` to communicate the need for recharging the battery
+    
+    `ArmorClient`
+
+* Service:
+
+    `/Recharging_Switch` to active the RANDOM_MOVEMENT state
+
+There are 1 functions:
+    
+* `Battery_Switch(req)`:
+
+    service callback.
+    
 
 ![UML](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/UML.png)
 
 Tutti i nodi, insieme all'aRMOR service vengono lanciati attraverso il file launch.
 
-In ogni file viene importato lo script python [Functions.py]() nel quale vengono definite le varie funzioni utilizzate da più nodi.
+In ogni file viene importato lo script python **[Functions.py]()** nel quale vengono definite le varie funzioni utilizzate da più nodi.
 
 Installation and running
 -------------------------------
@@ -116,7 +189,11 @@ $ catkin_make
 ```
 Add the line `‘source [ws_path]/devel/setup.bash’` in your `.bashrc` file.
 
-To be able to run the nodes you must frun the launch file:
+To be able to run the nodes you must first run the aRMOR service
+```
+$ rosrun armor execute it.emarolab.armor.ARMORMainService
+```
+And the run the launch file:
 ```bashscript
 $ roslaunch assignment_1 architecture.launch
 ```
