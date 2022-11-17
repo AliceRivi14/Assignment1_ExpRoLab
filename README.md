@@ -23,12 +23,12 @@ The scenario involves a survillance robot operating in a 2D indoor environment, 
 
 The behavior of the robot is divided into 2 phases:
 
-Phase 1:
+**Phase 1**:
 1. The robot start in the E location;
 2. The robot waits until it receives the information to build the topological map;
 3. The robot builts the map.
 
-Phase 2:
+**Phase 2**:
 1. The robot moves through locations following a surveillance policy:
     1. It should mainly stay on corridors,
     2. If a reachable room has not been visited for some times it should visit it;
