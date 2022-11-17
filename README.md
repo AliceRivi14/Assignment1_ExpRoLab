@@ -193,7 +193,7 @@ $ rosrun armor execute it.emarolab.armor.ARMORMainService
 ```
 And the run the launch file:
 ```bashscript
-$ roslaunch assignment_1 architecture.launch
+$ roslaunch assignment1 architecture.launch
 ```
 Oltre al terminale in cui viene lancito il file, appaiono 4 terminali:
 * SM
