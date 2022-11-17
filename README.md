@@ -6,6 +6,7 @@ Introduction
 -----------------
 
 This software architecture has been developed by [Student Robotics](https://studentrobotics.org) in ROS to simulate a surveillance robot.
+
 The whole software is provided in Python 3.
 
 Documentation via [Sphinx](https://www.sphinx-doc.org/en/master/) can be found **[here]**.
@@ -14,11 +15,11 @@ The software developed uses a [Smach Finite State Machine](http://wiki.ros.org/s
 
 Software Architecture
 ------------------------
-There are four nodes in this software architecture:
-* StateMachine
-* TopologicalMap
-* RandomMovement
-* Battery
+There are 4 nodes in this software architecture:
+* [StateMachine](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/StateMachine.py)
+* [TopologicalMap](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/TopologicalMap.py)
+* [RandomMovement](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/RandomMovement.py)
+* [Battery](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/Battery.py)
 
 ![UML](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/UML.png)
 
@@ -107,7 +108,7 @@ Running the FSM node in the terminal should show similar output
 
 ![Terminal_StateMachine.png](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Terminal_StateMachine.png)
 
-### Topological Map node 
+### TopologicalMap node 
 
 This node enables the behaviour associated with the TOPOLOGICAL_MAP state to be performed, simulating the construction of the topological map.
 
@@ -123,7 +124,9 @@ There are 2 functions:
 
 * `LoadMap()`:
 
-    through the aRMOR client, the topology map can be created by loading the ontology. This map was created through the use of [Protégé](https://protege.stanford.edu/) and aved in the file [Map.owl](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/ontology/Map.owl).
+    through the aRMOR client, the topology map can be created by loading the ontology.
+    
+    This map was created through the use of [Protégé](https://protege.stanford.edu/) and aved in the file [Map.owl](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/ontology/Map.owl).
     
 ```python
 # Load ontology
@@ -138,7 +141,7 @@ Corridors = CleanList(Armor_Client.call('QUERY', 'IND', 'CLASS', ['CORRIDOR']))
     service callback.
 
 
-### Random Movement node 
+### RandomMovement node 
 
 This node enables the behaviour associated with the RANDOM_MOVEMENT state to be performed, simulating the robot's movement between locations. 
 
@@ -217,7 +220,7 @@ Battery recharged in 1.02365749632569 seconds
 ```
 
 
-In each file, the python script **[Functions.py]** is imported, in which the various functions used by several nodes are defined.
+> :memo: **Note:** In each file, the python script [Functions.py](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/Functions.py) is imported, in which the various functions used by several nodes are defined.
 
 Installation and running
 -------------------------------
@@ -263,7 +266,7 @@ In addition to the terminal in which the file is launched, 4 terminals relating 
 > $ rosrun assignment1 StateMachine.py
 > ```
 
-> :memo: **Note:** Change the Path in the `TopologicalMap script` `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
+> :memo: **Note:** Change the Path in the `TopologicalMap` script `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
 
 
 Working Hypothesis and Environment
