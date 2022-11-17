@@ -2,8 +2,6 @@ Behavioural Architechture
 ================================
 **A ROS-based assignment for the Experimental Robotics Laboratory course held at the University of Genoa.**
 
-*Author: Alice Rivi <S5135011@studenti.unige.it>*
-
 Introduction 
 -----------------
 
@@ -13,28 +11,6 @@ The whole software is provided in Python 3.
 Documentation via [Sphinx](https://www.sphinx-doc.org/en/master/) can be found **[here]**.
 
 The software developed uses a [Smach Finite State Machine](http://wiki.ros.org/smach) FSM and builds an ontology with aRMOR, using the [armor_py_api](https://github.com/EmaroLab/armor_py_api).
-
-Features
-----------
-
-The scenario involves a survillance robot operating in a 2D indoor environment, without obstacles, made of 4 rooms (R1, R2, R3, R4) and 3 corridors (E, C1, C2).
-
-![Map](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Map.png)
-
-The behavior of the robot is divided into 2 phases:
-
-**Phase 1**:
-1. The robot start in the E location;
-2. The robot waits until it receives the information to build the topological map;
-3. The robot builts the map.
-
-**Phase 2**:
-1. The robot moves through locations following a surveillance policy:
-    1. It should mainly stay on corridors,
-    2. If a reachable room has not been visited for some times it should visit it;
-2. The robot moves in a new location, and waits for some times before to visit another location. 
-3. When the robot’s battery is low, the robot goes in the E location, and wait for some times before to start again with the above behavior.
-
 
 Software Architecture
 ------------------------
@@ -258,6 +234,7 @@ Add the line `‘source [ws_path]/devel/setup.bash’` in your `.bashrc` file.
 
 To be able to run the nodes you must first run the aRMOR service
 ```bashscript
+$ roscore &
 $ rosrun armor execute it.emarolab.armor.ARMORMainService
 ```
 And the run the launch file:
@@ -289,6 +266,40 @@ In addition to the terminal in which the file is launched, 4 terminals relating 
 > :memo: **Note:** Change the Path in the `TopologicalMap script` `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
 
 
+Working Hypothesis and Environment
+------------------------------------
 
+The scenario involves a survillance robot operating in a 2D indoor environment, without obstacles, made of 4 rooms (R1, R2, R3, R4), with only one door, and 3 corridors (E, C1, C2), with multiple doors.
 
+![Map](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Map.png)
 
+The behavior of the robot is divided into 2 phases:
+
+**Phase 1**:
+1. The robot start in the E location;
+2. The robot waits until it receives the information to build the topological map;
+3. The robot builts the map.
+
+**Phase 2**:
+1. The robot moves through locations following a surveillance policy:
+    1. It should mainly stay on corridors,
+    2. If a reachable room has not been visited for some times it should visit it (*urgency*);
+2. The robot moves in a new location, and waits for some times before to visit another location. 
+3. When the robot’s battery is low, the robot goes in the E location, and wait for some times before to start again with the above behavior.
+
+## System Limitations
+
+The main limitation of this software concerns the robot's ability to move for a random amount of time, as opposed to the actual amount of battery power.
+
+The predefined environment can also create problems as it is difficult to manage. In addition, in the case of the presence of obstacles, a path planner based on a defined map is required.
+
+## Possible Improvement
+
+The battery issue can easily be solved by setting a parameter indicating the battery percentage as a function of the distance travelled. Also, to prevent the robot from wasting too much time searching for the room to recharge, a return path could be set, as efficiently as possible, connecting each location with room E.
+
+As for the environment, one could create a real map associating each room with certain locations. Equipping the robot with a scanner would also solve the problem of obstacles.
+
+Author
+--------
+ 
+ *Alice Rivi <S5135011@studenti.unige.it>*
