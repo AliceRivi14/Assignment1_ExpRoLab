@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>script.TopologicalMap &mdash; Assignment1_ExpRoLab  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../Scripts.html" class="icon icon-home"> Assignment1_ExpRoLab
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../Scripts.html">Assignment1_ExpRoLab</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../Scripts.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>script.TopologicalMap</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for script.TopologicalMap</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. module:: TopologicalMap</span>
+<span class="sd">    :platform: Unix</span>
+<span class="sd">    :synopsis: Python module for topologic map construction</span>
+<span class="sd">.. moduleauthor:: Alice Rivi S5135011@studenti.unige.it</span>
+
+<span class="sd">ROS node for implementing the TOPOLOGICAL_MAP state of the finite state machine FSM</span>
+
+<span class="sd">Client:</span>
+<span class="sd">    ArmorClient</span>
+
+<span class="sd">Service:</span>
+<span class="sd">    /Mapping_Switch to active the TOPOLOGICAL_MAP state</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">roslib</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">import</span> <span class="nn">actionlib</span>
+<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">armor_api.armor_client</span> <span class="kn">import</span> <span class="n">ArmorClient</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;~/ERL_WS/src/assignment1/source/script&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">Functions</span>
+<span class="kn">from</span> <span class="nn">Functions</span> <span class="kn">import</span> <span class="n">CleanList</span>
+
+<span class="n">Active</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">Path</span> <span class="o">=</span> <span class="s1">&#39;ERL_WS/src/assignment1/ontology/Map.owl&#39;</span>
+<span class="n">IRI</span> <span class="o">=</span> <span class="s1">&#39;http://bnc/exp-rob-lab/2022-23&#39;</span>
+
+<span class="n">Armor_Client_ID</span> <span class="o">=</span> <span class="s1">&#39;User&#39;</span>
+<span class="n">Armor_ReferenceName</span> <span class="o">=</span> <span class="s1">&#39;Ref&#39;</span>
+<span class="n">Armor_Client</span> <span class="o">=</span> <span class="n">ArmorClient</span><span class="p">(</span><span class="n">Armor_Client_ID</span><span class="p">,</span> <span class="n">Armor_ReferenceName</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LoadMap"><a class="viewcode-back" href="../../Scripts.html#script.TopologicalMap.LoadMap">[docs]</a><span class="k">def</span> <span class="nf">LoadMap</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to load the topological map using the aRMOR client.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span><span class="s1">&#39;armor_interface_srv&#39;</span><span class="p">)</span>
+    <span class="c1"># Load ontology</span>
+    <span class="n">Armor_Client</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">load_ref_from_file</span><span class="p">(</span><span class="n">Path</span><span class="p">,</span> <span class="n">IRI</span><span class="p">,</span> <span class="n">buffered_manipulation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">reasoner</span><span class="o">=</span><span class="s1">&#39;PELLET&#39;</span><span class="p">,</span> <span class="n">buffered_reasoner</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">mounted</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">Rooms</span> <span class="o">=</span> <span class="n">CleanList</span><span class="p">(</span><span class="n">Armor_Client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;QUERY&#39;</span><span class="p">,</span> <span class="s1">&#39;IND&#39;</span><span class="p">,</span> <span class="s1">&#39;CLASS&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ROOM&#39;</span><span class="p">]))</span>
+    <span class="n">Corridors</span> <span class="o">=</span> <span class="n">CleanList</span><span class="p">(</span><span class="n">Armor_Client</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s1">&#39;QUERY&#39;</span><span class="p">,</span> <span class="s1">&#39;IND&#39;</span><span class="p">,</span> <span class="s1">&#39;CLASS&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CORRIDOR&#39;</span><span class="p">]))</span>
+
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;MAP BUILT&#39;</span><span class="p">)</span></div>
+
+<span class="c1"># Service callback</span>
+<div class="viewcode-block" id="Mapping_Switch"><a class="viewcode-back" href="../../Scripts.html#script.TopologicalMap.Mapping_Switch">[docs]</a><span class="k">def</span> <span class="nf">Mapping_Switch</span><span class="p">(</span><span class="n">req</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Service callback</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        req(bool): for enabling/disabling the service related to mappig simulation</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        res.success (bool): indicates successful run of triggered service</span>
+
+<span class="sd">        res.message (string): informational</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">Active</span><span class="p">,</span> <span class="n">res</span>
+
+    <span class="n">Active</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">SetBoolResponse</span><span class="p">()</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;TOPOLOGICAL_MAP state&#39;</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">success</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># Service enable</span>
+    <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../Scripts.html#script.TopologicalMap.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function initializes the ROS node and service.</span>
+
+<span class="sd">    When the service /Mapping_Switch is called, map loading is simulated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">Mapping_Client</span>
+    <span class="k">global</span> <span class="n">Active</span>
+
+    <span class="c1"># Initialisation node</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span><span class="s1">&#39;TopologicalMap&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Initialisation service</span>
+    <span class="n">srv</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Service</span><span class="p">(</span><span class="s1">&#39;/Mapping_Switch&#39;</span><span class="p">,</span> <span class="n">SetBool</span><span class="p">,</span> <span class="n">Mapping_Switch</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">rospy</span><span class="o">.</span><span class="n">is_shutdown</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">Active</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span><span class="s1">&#39;I NEED A TOPOLOGICAL MAP&#39;</span><span class="p">)</span>
+            <span class="n">LoadMap</span><span class="p">()</span>
+            <span class="n">Active</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Wait for ctrl-c to stop the application</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">()</span></div>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Alice Rivi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
