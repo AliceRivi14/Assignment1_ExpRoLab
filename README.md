@@ -99,6 +99,10 @@ There are 4 classes representing the states of the finite state machine. Each st
     
     * `b_low`: if the robot needs to be recharged
     * `move`: if the robot can move between the rooms
+    
+Running the FSM node in the terminal should show similar output
+
+![Terminal_StateMachine.png](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Terminal_StateMachine.png)
 
 ### Topological Map node 
 
@@ -151,6 +155,9 @@ There are 2 functions:
 
     service callback.
 
+Running the RandomMovement node in the terminal should show similar output
+
+![Terminal_RandomMovement.png](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Terminal_RandomMovement.png)
 
 ### Battery node 
 
@@ -172,39 +179,43 @@ There are 1 functions:
 
     service callback.
     
+Running the RandomMovement node in the terminal should show similar output
 
-In ogni file viene importato lo script python **[Functions.py]()** nel quale vengono definite le varie funzioni utilizzate da più nodi.
+![Terminal_Battery.png](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/Terminal_Battery.png)
+
+In each file, the python script **[Functions.py]** is imported, in which the various functions used by several nodes are defined.
 
 Installation and running
 -------------------------------
+
 In a terminal type the following commands:
 ```bashscript
-$ mkdir -p ROS_ws/src
-$ cd ROS_ws/src
+$ mkdir -p ROS_ws/src/assignment1
+$ cd ROS_ws/src/assignment1
 $ git clone https://github.com/AliceRivi14/Assignment1_ExpRoLab.git
-$ cd ..
+$ cd ../..
 $ catkin_make
 ```
 Add the line `‘source [ws_path]/devel/setup.bash’` in your `.bashrc` file.
 
 To be able to run the nodes you must first run the aRMOR service
-```
+```bashscript
 $ rosrun armor execute it.emarolab.armor.ARMORMainService
 ```
 And the run the launch file:
 ```bashscript
 $ roslaunch assignment1 architecture.launch
 ```
-Oltre al terminale in cui viene lancito il file, appaiono 4 terminali:
-* SM
-* MAP
-* RAND
-* BATT
+In addition to the terminal in which the file is launched, 4 terminals relating to the four ROS nodes appear.
 
-NEL CASO DI PROBLEMI DOVUTI AL CRASHARE DEI NODI, APRIRE 5 TERMINALI, LANCIARE IL roscore E UN NODO PER OGNI TERMINALE NEL SEGUENTE ORDINE
-armor
-???
-sm
+In case of problems due to some nodes crashing, run the aRMOR service and open 4 more terminals.
+In these terminals, execute the nodes in the following order:
+```bashscript
+$ rosrun assignment1 TopologicalMap.py
+$ rosrun assignment1 RandomMovement.py
+$ rosrun assignment1 Battery.py
+$ rosrun assignment1 StateMachine.py
+```
 
 > Note: Change the Path in the `TopologicalMap script` `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
 
