@@ -146,6 +146,14 @@ There are 2 functions:
 
     through the aRMOR client, the topology map can be created by loading the ontology. This map was created through the use of [Protégé](https://protege.stanford.edu/) and aved in the file [Map.owl](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/ontology/Map.owl).
     
+```python
+# Load ontology
+Armor_Client.utils.load_ref_from_file(Path, IRI, buffered_manipulation=False, reasoner='PELLET', buffered_reasoner=False, mounted=False)
+
+Rooms = CleanList(Armor_Client.call('QUERY', 'IND', 'CLASS', ['ROOM']))
+Corridors = CleanList(Armor_Client.call('QUERY', 'IND', 'CLASS', ['CORRIDOR']))
+```
+    
 * `Mapping_Switch(req)`:
 
     service callback.
@@ -175,6 +183,26 @@ There are 2 functions:
 
     If the position is not reached within a certain time (3.0 seconds) or if the signal of battery low is sent, the goal is cancelled.
     
+```python    
+MBClient = actionlib.SimpleActionClient('move_base',MoveBaseAction)
+
+    goal = MoveBaseGoal()
+    goal.target_pose.header.frame_id = "map"
+    goal.target_pose.pose.orientation.w = 1.0;
+    goal.target_pose.header.stamp = rospy.Time.now()
+    goal.target_pose.pose.position.x = random.uniform(0.0, 10.0)
+    goal.target_pose.pose.position.y = random.uniform(0.0, 10.0)
+    MBClient.send_goal(goal)
+
+    if MBClient.wait_for_result(rospy.Duration(3.0)) or B_Low == False:
+        rospy.loginfo(f'Position ({goal.target_pose.pose.position.x},{goal.target_pose.pose.position.y}) reached')
+        Target = Destination()
+        MoveRobot(Target)
+    else:
+        MBClient.cancel_goal()
+        print('GOAL CANCELLED \n')
+```
+  
 * `Movement_Switch(req)`:
 
     service callback.
