@@ -27,7 +27,7 @@ There are 4 nodes in this software architecture:
 
 In this node, the state machine and the sub-state machine are initialised.
 
-**viewer FOTO**
+![StateMachine](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/StateMachine.png)
 
 * Client:
 
