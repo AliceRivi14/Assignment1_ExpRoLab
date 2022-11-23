@@ -221,7 +221,9 @@ Battery recharged in 1.02365749632569 seconds
 ```
 
 
-> :memo: **Note:** In each file, the python script [Functions.py](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/Functions.py) is imported, in which the various functions used by several nodes are defined.
+> :memo: **Note:** In each file, the python script [Functions.py](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/Functions.py) is imported. 
+> 
+> In this script the various functions used by several nodes are defined.
 
 Installation and running
 -------------------------------
@@ -252,7 +254,7 @@ $ roslaunch assignment1 architecture.launch
 ```
 In addition to the terminal in which the file is launched, 4 terminals relating to the four ROS nodes appear.
 
-> ⚠️: **Warning:** In case of problems due to some nodes crashing, run the aRMOR service and open 4 more terminals.
+> ⚠️ **Warning:** In case of problems due to some nodes crashing, run the aRMOR service and open 4 more terminals.
 > 
 > In these terminals, execute the nodes in the following order:
 > ```bashscript
@@ -272,7 +274,7 @@ In addition to the terminal in which the file is launched, 4 terminals relating 
 > $ rosrun assignment1 StateMachine.py
 > ```
 
-> 📝: **Note:** Change the Path in the `TopologicalMap` script `‘[ws_path]/assignment_1/ontology/Map.owl’` and the import path in each script.
+> 📝 **Note:** Change the Path `‘[ws_path]/assignment_1/ontology/Map.owl’` in the [TopologicalMap.py](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/TopologicalMap.py) script  and the import path in each [script](https://github.com/AliceRivi14/Assignment1_ExpRoLab/tree/main/script).
 
 
 Working Hypothesis and Environment
