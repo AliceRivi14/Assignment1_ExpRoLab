@@ -126,7 +126,9 @@ There are 2 functions:
 
     through the aRMOR client, the topology map can be created by loading the ontology.
     
-    This map was created through the use of [Protégé](https://protege.stanford.edu/) and aved in the file [Map.owl](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/ontology/Map.owl).
+    This map was created through the use of [Protégé](https://protege.stanford.edu/) and saved in the file [Map.owl](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/ontology/Map.owl).
+    
+    >📝: It is possible to modify the map via the Protégé GUI or directly in the python script using the commands in the [armor documentation](https://github.com/EmaroLab/armor/blob/master/commands.md).
     
 ```python
 # Load ontology
