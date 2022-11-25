@@ -6,7 +6,9 @@
     :synopsis: Python module for battery control
 .. moduleauthor:: Alice Rivi S5135011@studenti.unige.it
 
-ROS node for implementing the ROOM_E state of the finite state machine FSM
+ROS node for implementing the ROOM_E state of the finite state machine FSM.
+
+Through this node, the waiting time for the robot to recharge is simulated.
 
 Client:
     /B_Switch to communicate the need for recharging the battery
