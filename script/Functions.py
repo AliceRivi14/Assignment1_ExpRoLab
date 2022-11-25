@@ -71,7 +71,6 @@ def MoveRobot(Location):
     Armor_Client.call('REPLACE', 'OBJECTPROP', 'IND', ['isIn', Robot, Location, Old_Loc])
     # Time when the robot visited the last location
     Old = str(CleanList(Armor_Client.call('QUERY', 'DATAPROP', 'IND', ['visitedAt', Location]))[0])
-    rospy.loginfo(f'Last location visited at {Old}')
     # Time in which the robot visits the current location
     New = str(round(time.time()))
     # Replacing the previous location-time with the one the robot moved to
@@ -83,7 +82,7 @@ def MoveRobot(Location):
 
 def Destination():
     """
-    Function to decide in which location the robot should move according to urgency.
+    Function to decide in which location the robot should move according to the Urgency.
 
     Returns:
         Target (string): location where the robot is to move
