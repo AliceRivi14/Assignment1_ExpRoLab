@@ -6,7 +6,9 @@
     :synopsis: Python module for robot random movement
 .. moduleauthor:: Alice Rivi S5135011@studenti.unige.it
 
-ROS node for implementing the RANDOM_MOVEMENT state of the finite state machine FSM
+ROS node for implementing the RANDOM_MOVEMENT state of the finite state machine FSM.
+
+Through this node, the movement of the robot in random positions is simulated.
 
 Client:
     ArmorClient
