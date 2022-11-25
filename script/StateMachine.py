@@ -147,7 +147,7 @@ class CHOOSE_DESTINATION(smach.State):
     def execute(self, userdata):
         """
         Function that executes the status of the FSM by executing a function
-        to decide in which location the robot should move according to urgency.
+        to decide in which location the robot should move according to  the urgency.
 
         Returns:
             Transition of the FSM to be carried out
