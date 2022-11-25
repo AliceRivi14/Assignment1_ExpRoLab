@@ -29,9 +29,6 @@ Here we can see the Component-Based Software Engineering diagram:
 
 In this node, the state machine and the sub-state machine are initialised.
 
-Through the smach viewer it is possible to visualise the behaviour of the FSM:
-![StateMachine](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/StateMachine.png)
-
 * Client:
 
     `/Battery_Switch` to active the ROOM_E state
@@ -106,6 +103,10 @@ Urgent = CleanList(Armor_Client.call('QUERY', 'IND', 'CLASS', ['URGENT']))
     
     * `b_low`: if the robot needs to be recharged
     * `move`: if the robot can move between the rooms
+
+Through the smach viewer it is possible to visualise the behaviour of the FSM:
+![StateMachine](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/StateMachine.png)
+
     
 Running the FSM node in the terminal should show similar output
 
