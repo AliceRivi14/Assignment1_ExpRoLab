@@ -21,12 +21,15 @@ There are 4 nodes in this software architecture:
 * [RandomMovement](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/RandomMovement.py)
 * [Battery](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/script/Battery.py)
 
+Here we can see the Component-Based Software Engineering diagram:
 ![UML](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/UML.png)
+
 
 ### StateMachine node
 
 In this node, the state machine and the sub-state machine are initialised.
 
+Through the smach viewer it is possible to visualise the behaviour of the FSM:
 ![StateMachine](https://github.com/AliceRivi14/Assignment1_ExpRoLab/blob/main/images/StateMachine.png)
 
 * Client:
