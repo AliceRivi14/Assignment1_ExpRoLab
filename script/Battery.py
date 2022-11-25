@@ -29,7 +29,7 @@ from assignment1.srv import BatteryLow, BatteryLowResponse
 from armor_api.armor_client import ArmorClient
 
 import sys
-#sys.path.append('~/ERL_WS/src/assignment1/source/script')
+sys.path.append('~/ERL_WS/src/assignment1/source/script')
 import Functions
 from Functions import MoveRobot
 
@@ -80,16 +80,14 @@ def main():
         if Active == False:
             time.sleep(random.uniform(5.0, 10.0))
             resp = B_Client(True) # Recharging required
-            rospy.loginfo('I NEED TO RECHARGE')
+            rospy.loginfo('I NEED TO BE RECHARGED')
             continue
         else:
             rospy.loginfo('BATTERY LOW')
             MoveRobot('E')
             time.sleep(B_Time)
-            # NON ARRIVA MAI QUA A CAUSA DEL MoveBaseAction
             rospy.loginfo(f'Battery recharged in {B_Time} seconds')
             resp = B_Client(False)
-            Active = False # PER PROVARE
 
         # Wait for ctrl-c to stop the application
         rospy.spin()
