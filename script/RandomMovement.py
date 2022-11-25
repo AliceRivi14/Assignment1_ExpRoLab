@@ -33,7 +33,7 @@ from assignment1.srv import BatteryLow, BatteryLowResponse
 from armor_api.armor_client import ArmorClient
 
 import sys
-sys.path.append('~/ERL_WS/src/assignment1/source/script')
+sys.path.append('~/ERL_WS/src/assignment1/script')
 import Functions
 from Functions import MoveRobot, Destination
 import StateMachine
