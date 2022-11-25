@@ -6,7 +6,9 @@
     :synopsis: Python module for topologic map construction
 .. moduleauthor:: Alice Rivi S5135011@studenti.unige.it
 
-ROS node for implementing the TOPOLOGICAL_MAP state of the finite state machine FSM
+ROS node for implementing the TOPOLOGICAL_MAP state of the finite state machine FSM.
+
+This node allows the map to be constructed by loading the ontology.
 
 Client:
     ArmorClient
@@ -43,6 +45,7 @@ def LoadMap():
     Function to load the topological map using the aRMOR client.
     """
     rospy.wait_for_service('armor_interface_srv')
+    
     # Load ontology
     Armor_Client.utils.load_ref_from_file(Path, IRI, buffered_manipulation=False, reasoner='PELLET', buffered_reasoner=False, mounted=False)
 
