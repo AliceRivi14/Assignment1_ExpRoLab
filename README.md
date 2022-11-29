@@ -239,8 +239,8 @@ In a terminal type the following commands:
 $ mkdir -p ROS_ws/src/assignment1
 $ cd ROS_ws/src/assignment1
 $ git clone https://github.com/AliceRivi14/Assignment1_ExpRoLab.git
-$ cd scritp
-$  chmod +x <file_name>
+$ cd script
+$ chmod +x <file_name>
 $ cd ../../..
 $ catkin_make
 ```
